@@ -10,9 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.7.0"
-  },
-  "dependencies": {
+    "jest": "^29.7.0",
     "node-mocks-http": "^1.14.1"
   }
 }
