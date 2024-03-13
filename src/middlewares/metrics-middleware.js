@@ -1,4 +1,4 @@
-const MetricsCollector = require('../data-collection/collector');
+const MetricsCollector = require('../data-collection/collector')
 
 /**
  * Middleware class for collecting and handling API performance metrics.
@@ -9,7 +9,7 @@ class MetricsMiddleware {
    * @param {boolean} logMetrics - Whether to log metrics to the console.
    */
   constructor(logMetrics = false) {
-    this.logMetrics = logMetrics;
+    this.logMetrics = logMetrics
   }
 
   /**
@@ -19,29 +19,31 @@ class MetricsMiddleware {
    * @param {Function} next - The next middleware function in the stack.
    */
   use(req, res, next) {
-    const collector = new MetricsCollector();
-    let finished = false;
+    const collector = new MetricsCollector()
+    let finished = false
 
     const finishResponse = () => {
       if (!finished) {
-        finished = true;
+        finished = true
         if (this.logMetrics) {
-          console.log(`CPU Usage: ${collector.getCpuUsage()}%`);
-          console.log(`Memory Usage: ${JSON.stringify(collector.getMemoryUsage())}`);
-          console.log(`Response Time: ${collector.getResponseTime()}ms`);
+          console.log(`CPU Usage: ${collector.getCpuUsage()}%`)
+          console.log(
+            `Memory Usage: ${JSON.stringify(collector.getMemoryUsage())}`
+          )
+          console.log(`Response Time: ${collector.getResponseTime()}ms`)
         }
       }
-    };
+    }
 
     // Override the 'end' method of the response to capture the end of the request
-    const originalEnd = res.end;
+    const originalEnd = res.end
     res.end = function (...args) {
-      finishResponse();
-      originalEnd.apply(res, args);
-    };
+      finishResponse()
+      originalEnd.apply(res, args)
+    }
 
-    next();
+    next()
   }
 }
 
-module.exports = MetricsMiddleware;
+module.exports = MetricsMiddleware

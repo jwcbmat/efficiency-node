@@ -1,12 +1,12 @@
-const process = require('process');
+const process = require('process')
 
 /**
  * Class for collecting API performance metrics.
  */
 class MetricsCollector {
   constructor() {
-    this.cpuUsage = process.cpuUsage();
-    this.startTime = process.hrtime();
+    this.cpuUsage = process.cpuUsage()
+    this.startTime = process.hrtime()
   }
 
   /**
@@ -14,9 +14,9 @@ class MetricsCollector {
    * @returns {string} CPU usage in percentage.
    */
   getCpuUsage() {
-    const currentUsage = process.cpuUsage(this.cpuUsage);
-    const totalUsage = currentUsage.user + currentUsage.system;
-    return (totalUsage / 1000).toFixed(2); // Convert to percentage
+    const currentUsage = process.cpuUsage(this.cpuUsage)
+    const totalUsage = currentUsage.user + currentUsage.system
+    return (totalUsage / 1000).toFixed(2) // Convert to percentage
   }
 
   /**
@@ -24,7 +24,7 @@ class MetricsCollector {
    * @returns {object} Memory usage details.
    */
   getMemoryUsage() {
-    return process.memoryUsage();
+    return process.memoryUsage()
   }
 
   /**
@@ -32,8 +32,8 @@ class MetricsCollector {
    * @returns {number} Response time in milliseconds.
    */
   getResponseTime() {
-    const diff = process.hrtime(this.startTime);
-    return (diff[0] * 1e9 + diff[1]) / 1e6; // Convert to milliseconds
+    const diff = process.hrtime(this.startTime)
+    return (diff[0] * 1e9 + diff[1]) / 1e6 // Convert to milliseconds
   }
 
   /**
@@ -42,8 +42,8 @@ class MetricsCollector {
    */
   getNetworkTraffic() {
     // This will be implemented later as it requires integration with API requests
-    return {};
+    return {}
   }
 }
 
-module.exports = MetricsCollector;
+module.exports = MetricsCollector
