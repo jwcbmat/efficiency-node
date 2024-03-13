@@ -3,8 +3,10 @@ module.exports = {
     browser: true,
     commonjs: true,
     es2021: true,
+    node: true,
+    jest: true,
   },
-  extends: 'standard',
+  extends: ['standard', 'prettier', 'plugin:prettier/recommended'],
   overrides: [
     {
       env: {
@@ -19,5 +21,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  rules: {},
-};
+  rules: {
+    'comma-dangle': ['error', 'only-multiline'],
+    'space-before-function-paren': 'off',
+  },
+}
